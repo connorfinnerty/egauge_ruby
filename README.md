@@ -1,24 +1,51 @@
 # EgaugeRuby
 
-TODO: Write a gem description
+This gem provides an interface with the Egauge API
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'egauge_ruby'
+  `gem 'egauge_ruby', :git => 'git@github.com:Dangeranger/egauge_ruby.git'`
 
 And then execute:
 
-    $ bundle
+  `$ bundle install`
 
 Or install it yourself as:
 
-    $ gem install egauge_ruby
+```sh
+$ git clone
+$ gem build egauge_ruby.gemspec
+$ gem istall egauge_ruby-version.gem
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Start with a new instance of the Gauge class
+
+  `irb> gauge = Egauge::Gauge.new('http://some_egauge_url.com')`
+
+Call the #current method on the instance of the Gauge class.
+
+  `gauge.current`
+
+  ```ruby
+    irb> gauge.current
+
+    >> {
+                       "Grid" => -2,
+                 "PV Array 1" => 167,
+                "PV Array 1+" => 167,
+                "PV  Array 2" => 518,
+               "PV  Array 2+" => 471,
+              "Fans + Halls?" => 44,
+            "East front hall" => 28,
+            "West front hall" => 1,
+                "Recept East" => 0,
+                "Recept West" => 0
+        }
+  ```
 
 ## Contributing
 

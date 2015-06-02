@@ -37,7 +37,7 @@ module EgaugeRuby
       request_config = {
         base_url: url,
         type: "stored",
-        query_arguments: [seperator_args[interval], "f=#{start_time.to_i}", "t=#{end_time.to_i}"],
+        query_arguments: [seperator_args[interval], "f=#{end_time.to_i}", "t=#{start_time.to_i}"],
       }
 
       @request = Request.new(request_config)
@@ -80,8 +80,9 @@ module EgaugeRuby
       when "current"
         1
       when "stored"
-        interval = document.xpath("//data").xpath("@time_delta").text.to_i
+        document.xpath("//data").xpath("@time_delta").text.to_i
       else
+        raise ArgumentError "Argument must be either 'current' or 'stored'"
       end
     end
 
@@ -154,7 +155,6 @@ module EgaugeRuby
       hash[:instantaneous]  = reg.xpath("i").text.to_i
       hash
     end
-
   end
 
   class Register
@@ -242,4 +242,5 @@ module EgaugeRuby
       end
     end
   end
+
 end
