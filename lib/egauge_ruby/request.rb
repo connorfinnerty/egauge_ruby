@@ -43,7 +43,7 @@ module EgaugeRuby
       @request = Request.new(request_config)
       @data = Data.new(request)
 
-      data.registers_to_hash
+      data.registers
     end
   end
 
