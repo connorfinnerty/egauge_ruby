@@ -1,4 +1,4 @@
-require 'rest-client'
+require 'typhoeus'
 require 'json'
 require 'nokogiri'
 
@@ -232,9 +232,8 @@ module EgaugeRuby
     end
 
     def get_xml
-      RestClient.get(full_url, timeout: 30) do |response, request, result, &block|
-        case response.code
-        when 200
+      response = Typhoeus.get(full_url, username: "owner", password: "default")
+        if response.code == 200
           response
         else
           response.return!(request, result, &block)
