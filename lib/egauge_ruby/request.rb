@@ -232,11 +232,9 @@ module EgaugeRuby
     end
 
     def get_xml
-      response = Typhoeus.get(full_url, username: "owner", password: "default")
-      if response.code == 200
+      response = Typhoeus.get(full_url, username: "owner", password: "default", httpauth: :digest)
+      unless response.code != 200
         response
-      else
-        response.return!(request, result, &block)
       end
     end
   end
