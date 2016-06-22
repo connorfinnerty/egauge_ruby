@@ -233,11 +233,10 @@ module EgaugeRuby
 
     def get_xml
       response = Typhoeus.get(full_url, username: "owner", password: "default")
-        if response.code == 200
-          response
-        else
-          response.return!(request, result, &block)
-        end
+      if response.code == 200
+        response
+      else
+        response.return!(request, result, &block)
       end
     end
   end
